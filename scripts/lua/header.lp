@@ -68,17 +68,30 @@ is_authenticated = mg.request_info.is_authenticated
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pi-hole <?=hostname?></title>
-    <meta name="csrf-token" content="<?=mg.request_info.csrf_token?>">
+    <!-- scripts -->
+    <script src="<?=pihole.fileversion('vendor/jquery/jquery.min.js')?>"></script>
+    <script src="<?=pihole.fileversion('vendor/bootstrap/js/bootstrap.min.js')?>"></script>
+    <script src="<?=pihole.fileversion('vendor/adminLTE/adminlte.min.js')?>"></script>
+    <script src="<?=pihole.fileversion('vendor/nprogress/nprogress.min.js')?>"></script>
+    <script src="<?=pihole.fileversion('scripts/js/utils.js')?>"></script>
+    <? if is_authenticated then ?>
+        <script src="<?=pihole.fileversion('vendor/bootstrap-notify/bootstrap-notify.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/select2/select2.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/datatables/datatables.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/datatables-select/datatables.select.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/datatables-buttons/datatables.buttons.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/chartjs/chart.umd.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/chartjs-plugin-deferred/chartjs-plugin-deferred.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/moment/moment.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/chartjs-adapter-moment/chartjs-adapter-moment.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/hammer/hammer.min.js')?>"></script> <!-- Needed for chartjs-plugin-zoom -->"
+        <script src="<?=pihole.fileversion('vendor/chartjs-plugin-zoom/chartjs-plugin-zoom.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/bstreeview/bstreeview.min.js')?>"></script>
+        <script src="<?=pihole.fileversion('vendor/waitMe-js/modernized-waitme-min.js')?>"></script>
+        <script src="<?=pihole.fileversion('scripts/js/logout.js')?>"></script>
+    <? end ?>
 
-    <link rel="apple-touch-icon" href="<?=webhome?>img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="<?=webhome?>img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="<?=webhome?>img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="<?=webhome?>img/favicons/manifest.json">
-    <link rel="mask-icon" href="<?=webhome?>img/favicons/safari-pinned-tab.svg" color="<?=theme.color?>">
-    <link rel="shortcut icon" href="<?=webhome?>img/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="<?=theme.color?>">
-    <meta name="msapplication-TileImage" content="<?=webhome?>img/favicons/mstile-150x150.png">
-    <meta name="theme-color" content="<?=theme.color?>">
+
 
     <!-- Theme fonts -->
 <? if theme.name == 'lcars' then ?>
@@ -125,11 +138,17 @@ is_authenticated = mg.request_info.is_authenticated
     <link rel="stylesheet" href="<?=pihole.fileversion('style/themes/' ..theme.name.. '.css')?>">
 <? end ?>
 
-    <noscript><link rel="stylesheet" href="<?=pihole.fileversion('vendor/js-warn/js-warn.css')?>"></noscript>
+    <meta name="csrf-token" content="<?=mg.request_info.csrf_token?>">
 
-    <!-- scripts -->
-    <script src="<?=pihole.fileversion('vendor/jquery/jquery.min.js')?>"></script>
-    <script src="<?=pihole.fileversion('vendor/bootstrap/js/bootstrap.min.js')?>"></script>
-    <script src="<?=pihole.fileversion('vendor/adminLTE/adminlte.min.js')?>"></script>
-    <script src="<?=pihole.fileversion('vendor/nprogress/nprogress.min.js')?>"></script>
-    <script src="<?=pihole.fileversion('scripts/js/utils.js')?>"></script>
+    <!-- Favicons and Tiles -->
+    <link rel="apple-touch-icon" href="<?=webhome?>img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="<?=webhome?>img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="<?=webhome?>img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="<?=webhome?>img/favicons/manifest.json">
+    <link rel="mask-icon" href="<?=webhome?>img/favicons/safari-pinned-tab.svg" color="<?=theme.color?>">
+    <link rel="shortcut icon" href="<?=webhome?>img/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="<?=theme.color?>">
+    <meta name="msapplication-TileImage" content="<?=webhome?>img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="<?=theme.color?>">
+
+    <noscript><link rel="stylesheet" href="<?=pihole.fileversion('vendor/js-warn/js-warn.css')?>"></noscript>
